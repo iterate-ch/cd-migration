@@ -54,4 +54,18 @@ public class HostParserTest {
         assertEquals("/home/ä-test", new HostParser(new ProtocolFactory(new HashSet<>(Arrays.asList(new SDSProtocol(), profile)))).get(
             "dracoon://duck.dracoon.com/home%2F%C3%A4-test").getDefaultPath());
     }
+
+    @Test
+    public void testParseDefault() throws Exception {
+        final Profile ad = new ProfilePlistReader(new ProtocolFactory(Collections.singleton(new SDSProtocol()))).read(
+            new Local("../profiles/DRACOON (Active Directory).cyberduckprofile"));
+        final Profile email = new ProfilePlistReader(new ProtocolFactory(Collections.singleton(new SDSProtocol()))).read(
+            new Local("../profiles/DRACOON (Email Address).cyberduckprofile"));
+        final Profile oauth = new ProfilePlistReader(new ProtocolFactory(Collections.singleton(new SDSProtocol()))).read(
+            new Local("../profiles/DRACOON (OAuth).cyberduckprofile"));
+        final ProtocolFactory factory = new ProtocolFactory(new HashSet<>(Arrays.asList(new SDSProtocol(), ad, email, oauth)));
+        final Host host = new HostParser(factory, factory.forName("dracoon-oauth")).get(
+            "dracoon://duck.dracoon.com/");
+        assertEquals("dracoon-oauth", host.getProtocol().getProvider());
+    }
 }
