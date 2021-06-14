@@ -24,6 +24,8 @@
     <packaging>jar</packaging>
     <properties>
         <sshj-version>0.30.4</sshj-version>
+        <!-- Enable embedded integration tests-->
+        <surefire.excluded/>
     </properties>
     <dependencies>
         <dependency>

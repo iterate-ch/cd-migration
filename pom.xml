@@ -82,6 +82,7 @@
         <bouncycastle-version>1.69</bouncycastle-version>
         <httpclient-version>4.5.13</httpclient-version>
         <google-http-client.version>1.39.2</google-http-client.version>
+        <surefire.excluded>ch.cyberduck.test.IntegrationTest</surefire.excluded>
     </properties>
 
     <dependencyManagement>
@@ -478,7 +479,7 @@
                         <environmentVariables>
                             <DYLD_FALLBACK_FRAMEWORK_PATH>${project.build.directory}</DYLD_FALLBACK_FRAMEWORK_PATH>
                         </environmentVariables>
-                        <excludedGroups>ch.cyberduck.test.IntegrationTest</excludedGroups>
+                        <excludedGroups>${surefire.excluded}</excludedGroups>
                         <trimStackTrace>false</trimStackTrace>
                     </configuration>
                 </plugin>
