@@ -300,7 +300,8 @@ public interface Protocol extends Comparable<Protocol> {
         nextcloud,
         manta,
         gmxcloud,
-        ctera
+        ctera,
+        box
     }
 
     enum Case {
